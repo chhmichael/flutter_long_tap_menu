@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           Menu(
             child: Container(
-              width: 200,
+              width: double.infinity,
               color: Colors.yellow,
               height: 100,
               child: Text("long press show menu"),
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
             items: [
               MenuItem("copy", () {}),
               MenuItem("add", _incrementCounter),
-              MenuItem("copy", () {}),
+              MenuItem("copyuhkhujhkh", () {}),
             ],
             decoration: MenuDecoration(
               // constraints: BoxConstraints(),
