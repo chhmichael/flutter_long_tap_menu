@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menu/src/helper/ui_helper.dart';
 import 'package:menu/src/menu/tap_type.dart';
+import 'package:positioned_tap_detector/positioned_tap_detector.dart';
 
 part './decoration.dart';
 
@@ -45,14 +46,19 @@ class Menu extends StatefulWidget {
 
 class MenuState extends State<Menu> {
   GlobalKey key = GlobalKey();
+  String _gesture = "";
+  TapPosition _position = TapPosition(Offset.zero, Offset.zero);
+
 
   @override
   Widget build(BuildContext context) {
     switch (widget.clickType) {
       case ClickType.longPress:
-        return GestureDetector(
+        return PositionedTapDetector(
           key: key,
-          onLongPress: defaultShowItem,
+          onLongPress: (position){
+            defaultLPShowItem(position);
+          },
           behavior: HitTestBehavior.opaque,
           child: widget.child,
         );
@@ -75,9 +81,14 @@ class MenuState extends State<Menu> {
         return widget.child;
     }
   }
-
+  void defaultLPShowItem(TapPosition pos) {
+    var rect = UIHelper.findGlobalRect(key);
+    print("rect $rect");
+    showItem(Rect.fromLTWH(pos.global.dx, rect.top, rect.width, rect.height));
+  }
   void defaultShowItem() {
     var rect = UIHelper.findGlobalRect(key);
+    print("rect $rect");
     showItem(rect);
   }
 
