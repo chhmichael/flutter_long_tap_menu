@@ -88,13 +88,18 @@ class MenuState extends State<Menu> {
     // character ~8px each, horizontal padding 20px for each MenuItem, separator 0.5px ,
     var width = noOfCharacters * 9 + widget.items.length * 20 + (widget.items.length - 1) * 0.5;
     var dx = pos.global.dx - 40;
+    var dy = pos.global.dy - 70;
     var screenW = MediaQuery.of(context).size.width;
     if (dx > screenW - width){
       dx = screenW - width;
     }else if (dx - 40 < 0){
       dx = 0;
     }
-    showItem(Rect.fromLTWH(dx, rect.top - 30, rect.width, rect.height));
+    if(dy < 0){
+      dy = 0;
+    }
+
+    showItem(Rect.fromLTWH(dx, dy, rect.width, rect.height));
   }
   void defaultShowItem() {
     var rect = UIHelper.findGlobalRect(key);
