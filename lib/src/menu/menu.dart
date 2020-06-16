@@ -92,7 +92,7 @@ class MenuState extends State<Menu> {
     var screenW = MediaQuery.of(context).size.width;
     if (dx > screenW - width){
       dx = screenW - width;
-    }else if (dx - 40 < 0){
+    }else if (dx < 0){
       dx = 0;
     }
     if(dy < 0){
